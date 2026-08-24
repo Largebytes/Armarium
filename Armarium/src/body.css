@@ -1,0 +1,32 @@
+.rack{
+  width: 300px;  
+  height: 300px;           
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;          
+  background-color: #e3d5ca; 
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.rackblacked{
+  width: 300px;  
+  height: 300px;           
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;          
+  background-color: #e3d5ca; 
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  background: rgba(128,128,128,0.5);
+}
+
+.rackimg{
+    width: 50%;
+    height: 50%;
+    display:block;
+    margin: auto;
+}
+
+.p{
+    font-size: 14px;
+    text-align: center;
+}

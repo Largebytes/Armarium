@@ -1,0 +1,10 @@
+.heading{
+    margin-left: 70px;
+    margin-bottom: 30px;
+}
+.grid{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-left: 70px;
+}
