@@ -1,4 +1,5 @@
 import { useState } from "react"
+import {supabase} from "./supabase-js"
 import "./popupcss.css"
 
 
@@ -18,7 +19,7 @@ function PopUp(props){
     function submitb(){
         submitbuttfun(srcin,titlein)
     }
-    const handleImage = (e) => {            /*this part(uploading image part) is directly copied from chatgpt*/
+    /*const handleImage = (e) => {            
         const file = e.target.files[0];
 
         if (!file) return;
@@ -30,6 +31,30 @@ function PopUp(props){
         };
 
         reader.readAsDataURL(file);
+    };*/
+    const handleImage = async (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        const filePath = `${Date.now()}-${file.name}`;
+
+        const { error: uploadError } = await supabase.storage
+            .from('clothing-images')
+            .upload(filePath, file);
+
+        if (uploadError) {
+            console.error('Upload failed:', uploadError.message);
+            return;
+        }
+
+         // save the reference in the database
+        const { error: insertError } = await supabase
+            .from('clothes')
+            .insert({ name: file.name, image_path: filePath });
+
+        if (insertError) {
+            console.error('DB insert failed:', insertError.message);
+         }
     };
 
     const image = localStorage.getItem("myImage")
