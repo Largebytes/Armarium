@@ -9,6 +9,7 @@ function PopUp(props){
     let srcin= "https://www.shutterstock.com/image-vector/tee-t-shirt-clothing-plain-260nw-1969378285.jpg"
     /*const [srcin, srcInFun]= useState("")*/
     const [titlein,setTitleFun] = useState("")
+    const [cloths, setClothes] = useState([])
 
     /*function inputboxfun(event){
         srcInFun(event.target.value)
@@ -49,7 +50,7 @@ function PopUp(props){
 
          // save the reference in the database
         const { error: insertError } = await supabase
-            .from('clothes')
+            .from('cloths')
             .insert({ name: file.name, image_path: filePath });
 
         if (insertError) {
@@ -57,9 +58,27 @@ function PopUp(props){
          }
     };
 
-    const image = localStorage.getItem("myImage")
+    const fetchClothes = async () => {
+        const { data, error } = await supabase
+            .from('clothes')
+            .select('*');
 
-    srcin=image
+        if (error) {
+            console.error('Fetch failed:', error.message);
+            return;
+        }
+
+        const withUrls = data.map(item => ({
+            ...item,
+            imageUrl: supabase.storage.from('clothing-images').getPublicUrl(item.image_path).data.publicUrl,
+        }));
+
+        setClothes(withUrls);
+    };
+    fetchClothes()
+    /*const image = localStorage.getItem("myImage")*/
+
+    srcin=cloths.map(item => item.imageUrl);
 
     return(
         <div className="pop">
