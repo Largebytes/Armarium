@@ -40,7 +40,7 @@ function PopUp(props){
         const filePath = `${Date.now()}-${file.name}`;
 
         const { error: uploadError } = await supabase.storage
-            .from('clothing-images')
+            .from('cloth-img')
             .upload(filePath, file);
 
         if (uploadError) {
@@ -60,7 +60,7 @@ function PopUp(props){
 
     const fetchClothes = async () => {
         const { data, error } = await supabase
-            .from('clothes')
+            .from('cloths')
             .select('*');
 
         if (error) {
@@ -70,7 +70,7 @@ function PopUp(props){
 
         const withUrls = data.map(item => ({
             ...item,
-            imageUrl: supabase.storage.from('clothing-images').getPublicUrl(item.image_path).data.publicUrl,
+            imageUrl: supabase.storage.from('cloth-img').getPublicUrl(item.image_path).data.publicUrl,
         }));
 
         setClothes(withUrls);
