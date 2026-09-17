@@ -51,7 +51,7 @@ function PopUp(props){
          // save the reference in the database
         const { error: insertError } = await supabase
             .from('cloths')
-            .insert({ name: file.name, image_path: filePath });
+            .insert({ name: file.name, imagepath: filePath });
 
         if (insertError) {
             console.error('DB insert failed:', insertError.message);
@@ -70,7 +70,7 @@ function PopUp(props){
 
         const withUrls = data.map(item => ({
             ...item,
-            imageUrl: supabase.storage.from('cloth-img').getPublicUrl(item.image_path).data.publicUrl,
+            imageUrl: supabase.storage.from('cloth-img').getPublicUrl(item.imagepath).data.publicUrl,
         }));
 
         setClothes(withUrls);
