@@ -4,6 +4,7 @@ import Rack from "./Rack"
 import "./header"
 import PopUp from "./popup"
 import "./popupcss.css"
+import {supabase} from "./supabase-js"
 
 
 function App(){
@@ -40,8 +41,16 @@ function App(){
   function addclick(){
     popboolsetter(!currentpopbool)
   }
-    function deleteCard(id) {
-  const updatedCards = currentcard.filter(function (item) {
+  async function deleteCard(id,dbid,dbpath) {
+     if (dbpath) {
+      const { error: storageError } = await supabase.storage.from('cloth-img').remove([dbpath]);
+      if (storageError) console.error('Storage delete failed:', storageError.message);
+    }
+    if (dbid) {
+      const { error: dbError } = await supabase.from('cloths').delete().eq('id', dbid);
+      if (dbError) console.error('DB delete failed:', dbError.message);
+    }
+    const updatedCards = currentcard.filter(function (item) {
     return item.id !== id
   })
   cardSetter(updatedCards)

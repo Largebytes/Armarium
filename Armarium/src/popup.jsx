@@ -11,6 +11,9 @@ function PopUp(props){
     const [titlein,setTitleFun] = useState("")
     const [cloths, setClothes] = useState([])
 
+    const [dbid, setDbid] = useState(null);
+    const [dbpath, setDbpath] = useState(null);
+
     /*function inputboxfun(event){
         srcInFun(event.target.value)
     }*/
@@ -18,7 +21,7 @@ function PopUp(props){
         setTitleFun(event.target.value)
     }
     function submitb(){
-        submitbuttfun(srcin,titlein)
+        submitbuttfun(srcin,titlein,dbid,dbpath)
     }
     /*const handleImage = (e) => {            
         const file = e.target.files[0];
@@ -49,14 +52,19 @@ function PopUp(props){
         }
 
          // save the reference in the database
-        const { error: insertError } = await supabase
+        const { data: insertData,error: insertError } = await supabase
             .from('cloths')
             .insert({ name: file.name, imagepath: filePath });
 
         if (insertError) {
             console.error('DB insert failed:', insertError.message);
          }
+       
+        setDbid(insertData[0].id)
+        setDbpath(filePath)
     };
+   
+    
 
     const fetchClothes = async () => {
         const { data, error } = await supabase
