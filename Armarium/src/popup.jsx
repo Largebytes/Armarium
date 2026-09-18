@@ -78,7 +78,8 @@ function PopUp(props){
     fetchClothes()
     /*const image = localStorage.getItem("myImage")*/
 
-    srcin=cloths.map(item => item.imageUrl);
+    /*srcin=cloths.map(item => item.imageUrl);*/
+    srcin = cloths[cloths.length - 1]?.imageUrl;
 
     return(
         <div className="pop">
