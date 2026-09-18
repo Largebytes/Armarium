@@ -60,7 +60,7 @@ function App(){
   console.log("deleted")
 }
   const racking=currentcard.map((item,index)=>{
-    return <Rack imgscrr={item.srclink} cardtextt={item.titleout} key={index} id={item.id} onDelete={deleteCard}
+    return <Rack imgscrr={item.srclink} cardtextt={item.titleout} key={index} id={item.id} onDelete={deleteCard} did={item.dbid} dpath={item.dbpath}
      />
   })
 

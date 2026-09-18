@@ -6,6 +6,7 @@ import { useEffect } from "react"
 function Rack(props){
     const imgscr=props.imgscrr
     const cardtext=props.cardtextt
+    
 
     const [colbool,setColBool] = useState(()=>{
         const savedcol = localStorage.getItem("colL-"+props.id)
@@ -72,7 +73,7 @@ function Rack(props){
         localStorage.setItem("colI-"+props.id,JSON.stringify(colbooliron))
     },[colbooliron,props.id])
     function handleDeleteClick() {
-        props.onDelete(props.id)
+        props.onDelete(props.id,props.did,props.dpath)
     }
 
     return(
