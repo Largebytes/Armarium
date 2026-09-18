@@ -23,7 +23,7 @@ function App(){
   
   function submitbutt(srcinn,titleinn, dbidd, dbpathh){
         popboolsetter(!currentpopbool)
-        cardSetter([...currentcard,{id:Date.now(),srclink:srcinn,titleout:titleinn,dbId: dbidd, dbPath: dbpathh}])
+        cardSetter([...currentcard,{id:Date.now(),srclink:srcinn,titleout:titleinn,dbid: dbidd, dbpath: dbpathh}])
   }
   function cancelbutt(){
     popboolsetter(!currentpopbool)
