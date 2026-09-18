@@ -59,7 +59,7 @@ function PopUp(props){
         if (insertError) {
             console.error('DB insert failed:', insertError.message);
          }
-       
+        console.log("insertData:", insertData, "insertError:", insertError);
         setDbid(insertData[0].id)
         setDbpath(filePath)
     };
