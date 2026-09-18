@@ -42,6 +42,7 @@ function App(){
     popboolsetter(!currentpopbool)
   }
   async function deleteCard(id,dbid,dbpath) {
+    console.log("deleting:", id, dbid, dbpath);
      if (dbpath) {
       const { error: storageError } = await supabase.storage.from('cloth-img').remove([dbpath]);
       if (storageError) console.error('Storage delete failed:', storageError.message);
