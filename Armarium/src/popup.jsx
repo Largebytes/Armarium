@@ -54,7 +54,8 @@ function PopUp(props){
          // save the reference in the database
         const { data: insertData,error: insertError } = await supabase
             .from('cloths')
-            .insert({ name: file.name, imagepath: filePath });
+            .insert({ name: file.name, imagepath: filePath })
+            .select();
 
         if (insertError) {
             console.error('DB insert failed:', insertError.message);
