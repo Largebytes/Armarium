@@ -21,9 +21,9 @@ function App(){
   })
   const [currentpopbool,popboolsetter] = useState(true)
   
-  function submitbutt(srcinn,titleinn){
+  function submitbutt(srcinn,titleinn, dbidd, dbpathh){
         popboolsetter(!currentpopbool)
-        cardSetter([...currentcard,{id:Date.now(),srclink:srcinn,titleout:titleinn}])
+        cardSetter([...currentcard,{id:Date.now(),srclink:srcinn,titleout:titleinn,dbId: dbidd, dbPath: dbpathh}])
   }
   function cancelbutt(){
     popboolsetter(!currentpopbool)
